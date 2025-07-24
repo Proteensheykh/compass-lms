@@ -18,6 +18,8 @@ import { Select } from "@radix-ui/react-select"
 import { SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select"
 import { subjects } from "@/constants"
 import { Textarea } from "./ui/textarea"
+import { createCompanion } from "@/lib/actions/companion.action"
+import { redirect } from "next/navigation"
 
 const formSchema = z.object({
     name: z.string().min(1, "Companion is required"),
@@ -43,8 +45,16 @@ const CompanionForm = () => {
     })
 
     // Form submission
-    const onSubmit = (data: z.infer<typeof formSchema>) => {
-        console.log(data)
+    const onSubmit = async (data: z.infer<typeof formSchema>) => {
+        const companion = await createCompanion(data)
+
+        if (companion) {
+            redirect(`/companion/${companion.id}`)
+        } else {
+            console.log("Failed to create a companion")
+            alert("Failed to create a companion")
+            redirect("/companion")
+        }
     }
     return (
         <Form {...form}>
