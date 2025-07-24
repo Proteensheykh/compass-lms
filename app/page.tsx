@@ -1,7 +1,7 @@
 import CompanionCard from '@/components/CompanionCard'
 import CompanionsList from '@/components/CompanionsList'
 import CTA from '@/components/CTA'
-import { recentSessions } from '@/constants'
+import { getSubjectColor, recentSessions } from '@/constants'
 import React from 'react'
 
 const Page = () => {
@@ -20,7 +20,7 @@ const Page = () => {
                 topic={session.topic}
                 subject={session.subject}
                 duration={session.duration}
-                color={session.color}
+                color={getSubjectColor(session.subject)}
               />
             );
           }

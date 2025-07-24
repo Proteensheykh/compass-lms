@@ -16,3 +16,36 @@ export const createCompanion = async (formData: CreateCompanion) => {
 
     return data[0]
 }
+
+export type GetAllCompanions = {
+    limit?: number;
+    page?: number;
+    topic?: string;
+    subject?: string;
+}
+
+export const getAllCompanions = async ({limit = 10, page = 1, topic, subject}: GetAllCompanions) => {
+    const supabase = createSupabaseClient()
+
+    // Create the query builder without awaiting it yet
+    let query = supabase.from("companions").select()
+
+    // Apply filters if provided
+    if (subject && topic) {
+        query = query.ilike("subject", `%${subject}%`).or(`topic.ilike.%${topic}%,name.ilike.%${topic}%`)
+    } else if (subject) {
+        query = query.ilike("subject", `%${subject}%`)
+    } else if (topic) {
+        query = query.or(`topic.ilike.%${topic}%,name.ilike.%${topic}%`)
+    }
+
+    // Apply pagination
+    query = query.range((page - 1) * limit, page * limit - 1)
+
+    // Execute the query only at the end
+    const { data, error } = await query
+
+    if (error) throw new Error(error.message || "Failed to fetch companions")
+
+    return data || []
+}

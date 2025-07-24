@@ -16,6 +16,10 @@ export const subjectsColors = {
   economics: "#C8FFDF",
 };
 
+export const getSubjectColor = (subject: string) => {
+    return subjectsColors[subject as keyof typeof subjectsColors]
+}
+
 export type Companion = {
     id: string
     subject: string
@@ -37,7 +41,6 @@ export const recentSessions = [
     name: "Neura the Brainy Explorer",
     topic: "Neural Network of the Brain",
     duration: 45,
-    color: "#E5D0FF",
     bookmarked: true
   },
   {
@@ -46,7 +49,6 @@ export const recentSessions = [
     name: "Countsy the Number Wizard",
     topic: "Derivatives & Integrals",
     duration: 30,
-    color: "#FFDA6E",
     bookmarked: false
   },
   {
@@ -55,7 +57,6 @@ export const recentSessions = [
     name: "Verba the Vocabulary Builder",
     topic: "English Literature",
     duration: 30,
-    color: "#BDE7FF",
     bookmarked: true
   },
   {
@@ -64,7 +65,6 @@ export const recentSessions = [
     name: "Codey the Logic Hacker",
     topic: "Intro to If-Else Statements",
     duration: 45,
-    color: "#FFC8E4",
     bookmarked: false
   },
   {
@@ -73,7 +73,6 @@ export const recentSessions = [
     name: "Memo, the Memory Keeper",
     topic: "World Wars: Causes & Consequences",
     duration: 15,
-    color: "#FFECC8",
     bookmarked: false
   },
   {
@@ -82,7 +81,6 @@ export const recentSessions = [
     name: "The Market Maestro",
     topic: "The Basics of Supply & Demand",
     duration: 10,
-    color: "#C8FFDF",
     bookmarked: false
   },
 ];
