@@ -172,7 +172,10 @@ const CompanionForm = () => {
                         <FormItem>
                             <FormLabel>Estimated session duration in minutes</FormLabel>
                             <FormControl>
-                                <Input type="number" placeholder="15" {...field} 
+                                <Input 
+                                type="number"
+                                defaultValue={15} 
+                                {...field} 
                                 className="input"/>
                             </FormControl>
                             <FormMessage />
