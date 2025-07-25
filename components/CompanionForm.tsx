@@ -174,7 +174,6 @@ const CompanionForm = () => {
                             <FormControl>
                                 <Input 
                                 type="number"
-                                defaultValue={15} 
                                 {...field} 
                                 className="input"/>
                             </FormControl>
