@@ -55,7 +55,7 @@ export const configureAssistant = (voice: string, style: string) => {
          },
       ],
     },
-    // @ts-ignore
+    // @ts-expect-error
     clientMessages: ["transcript"],
     serverMessages: undefined,
   };

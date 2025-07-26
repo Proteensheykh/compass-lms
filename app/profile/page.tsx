@@ -4,7 +4,6 @@ import { redirect } from "next/navigation"
 import Image from "next/image"
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@radix-ui/react-accordion"
 import CompanionsList from "@/components/CompanionsList"
-import { ChevronDown, ChevronUp } from "lucide-react"
 
 const Profile = async () => {
 
