@@ -1,13 +1,13 @@
 "use client"
 
 import { getSubjectColor } from "@/constants"
-import { cn } from "@/lib/utils"
 import { vapi } from "@/lib/vapi.sdk"
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import Lottie, { LottieRefCurrentProps } from "lottie-react"
 import soundwaves from "@/constants/soundwaves.json"
-import { configureAssistant } from "@/lib/utils"
+import { cn, configureAssistant } from "@/lib/utils"
+import { addToSessionHistory } from "@/lib/actions/companion.action"
 
 enum CallStatus {
   INACTIVE = "inactive",
@@ -17,7 +17,7 @@ enum CallStatus {
 }
 
 
-const CompanionComponent = ( {name, subject, topic, userName, userImage, voice, style, }: CompanionComponentProps ) => {
+const CompanionComponent = ( {companionId, name, subject, topic, userName, userImage, voice, style, }: CompanionComponentProps ) => {
 
   const [callStatus, setCallStatus] = useState<CallStatus>(CallStatus.INACTIVE)
   const [isSpeaking, setIsSpeaking] = useState(false)
@@ -44,6 +44,7 @@ const CompanionComponent = ( {name, subject, topic, userName, userImage, voice, 
 
     const onCallEnd = () => {
       setCallStatus(CallStatus.FINISHED)
+      addToSessionHistory(companionId)
     }
 
     const onMessage = (message: Message) => {
