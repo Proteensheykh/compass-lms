@@ -174,20 +174,6 @@ const CompanionComponent = ( {companionId, name, subject, topic, userName, userI
       {/* Transcript */}
       <section className="transcript">
         <div className="transcript-message no-scrollbar">
-          {messages.map((message, index) => {
-            if(message.role === "assistant"){
-              return (
-                <p key={index} className="max-sm:text-sm text-2xl">{name.split(" ")[0].replace(/[.,]/g, "")} : {message.content}</p>
-              )
-            } else {
-              return (
-                <p key={index} className="text-primary max-sm:text-sm text-2xl">{userName.split(" ")[0].replace(/[.,]/g, "")}: {message.content}</p>
-              )
-            }
-          })}
-        </div>
-        <div className="transcript-fade" />
-        <div className="transcript-message no-scrollbar">
           {messages.map((message) => {
             if(message.role === "assistant"){
               return (
