@@ -1,13 +1,16 @@
 import CompanionCard from '@/components/CompanionCard'
 import CompanionsList from '@/components/CompanionsList'
 import CTA from '@/components/CTA'
-import { getSubjectColor } from '@/constants'
+import { getSubjectColor, Companion } from '@/constants'
 import { getAllCompanions, getRecentSession } from '@/lib/actions/companion.action'
 import React from 'react'
 
+// Force dynamic rendering to avoid static generation issues
+export const dynamic = 'force-dynamic'
+
 const Page = async () => {
   const companions = await getAllCompanions({ limit: 3 })
-  const recentSessionsData = await getRecentSession(10) as Companion[]
+  const recentSessionsData = await getRecentSession(10) as unknown as Companion[]
   // Get unique companions(remove duplicates)
   const uniqueCompanions = Array.from(new Map(recentSessionsData.map(item => [item.id, item])).values())
   
