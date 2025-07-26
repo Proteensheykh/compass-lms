@@ -55,7 +55,7 @@ export const configureAssistant = (voice: string, style: string) => {
          },
       ],
     },
-    // @ts-expect-error
+    // @ts-expect-error - AI SDK expects different message format than what we're providing
     clientMessages: ["transcript"],
     serverMessages: undefined,
   };
