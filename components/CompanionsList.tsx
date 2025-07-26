@@ -1,5 +1,5 @@
 import { Companion } from "@/constants"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, TableCaption } from "./ui/table"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table"
 import { cn, getSubjectColor } from "@/lib/utils"
 import Link from "next/link"
 import Image from "next/image"
@@ -24,9 +24,9 @@ const CompanionsList = ({ title, companions, classNames }: CompanionsListProps) 
             </TableHeader>
             <TableBody>
                 {companions?.map((companion) => (
-                    <TableRow>
+                    <TableRow key={companion.id}>
                         <TableCell>
-                            <Link href={`/companion/${companion.id}`} key={companion.id}>
+                            <Link href={`/companion/${companion.id}`}>
                                 <div className="cursor-pointer flex items-center gap-2">
                                     <div className="size-[72px] flex items-center justify-center rounded-lg max-md:hidden" style={{backgroundColor: getSubjectColor(companion.subject)}}>
                                         <Image src={`/icons/${companion.subject}.svg`} alt={companion.subject} width={35} height={35} />

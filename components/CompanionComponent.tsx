@@ -76,7 +76,7 @@ const CompanionComponent = ( {companionId, name, subject, topic, userName, userI
       vapi.off("speech-start", onSpeechStart)
       vapi.off("speech-end", onSpeechEnd)
     }
-  }, [])
+  })
 
 
   const toggleMicrophone = () => {
